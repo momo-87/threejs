@@ -17,6 +17,7 @@
   <body>
     <!-- include the javaScript file for Three.js -->
     <script src="./js/three.js"></script>
+    <script type="module" src="./js/OrbitControls.js"></script>
 
     <script>
       let scene = new THREE.Scene(); // initialize scene with default values
@@ -34,6 +35,8 @@
         camera.aspect = windowHeight / windowWidth;
         camera.updateProjectionMatrix();
       });
+
+      controls = new OrbitControls(camera, renderer.domElement);
 
 
       // create the shape
