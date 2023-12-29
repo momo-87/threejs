@@ -14,37 +14,37 @@
     height: 100vh;
   }
 </style>
-<body>
-  <!-- include the javaScript file for Three.js -->
-  <script src="./js/three.js"></script>
+  <body>
+    <!-- include the javaScript file for Three.js -->
+    <script src="./js/three.js"></script>
 
-  <script>
-    let scene = new THREE.Scene(); // initialize scene with default values
-    let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+    <script>
+      let scene = new THREE.Scene(); // initialize scene with default values
+      let camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
 
-    let renderer = new THREE.WebGLRenderer();
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    document.body.appendChild(renderer.domElement);
+      let renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
 
-    // game logic
-    let update = () => {
+      // game logic
+      let update = () => {
 
-    };
+      };
 
-    // draw scene
-    let render = () => {
-      renderer.render(scene, camera);
-    };
+      // draw scene
+      let render = () => {
+        renderer.render(scene, camera);
+      };
 
-    // run game loop (update, render, repeat)
-    let GameLoop = () => {
-      requestAnimationFrame(GameLoop);
+      // run game loop (update, render, repeat)
+      let GameLoop = () => {
+        requestAnimationFrame(GameLoop);
 
-      update();
-      render();
-    };
+        update();
+        render();
+      };
 
-    GameLoop();
-  </script>
-</body>
+      GameLoop();
+    </script>
+  </body>
 </html>
