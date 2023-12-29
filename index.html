@@ -26,11 +26,21 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
 
+      // resize canvas on resize window
+      window.addEventListener("resize", () => {
+        let windowWidth = window.innerWidth;
+        let windowHeight = window.innerHeight;
+        renderer.setSize(windowWidth, windowHeight);
+        camera.aspect = windowHeight / windowWidth;
+        camera.updateProjectionMatrix();
+      });
+
+
       // create the shape
       let geometry = new THREE.BoxGeometry(1, 1, 1);
 
       // create a material, color or image textute
-      let material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, wireframe: false });
+      let material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, wireframe: true });
 
       // create a mesh containing the geometry and material
       let cube = new THREE.Mesh(geometry, material);
