@@ -26,9 +26,25 @@
       renderer.setSize(window.innerWidth, window.innerHeight);
       document.body.appendChild(renderer.domElement);
 
+      // create the shape
+      let geometry = new THREE.BoxGeometry(1, 1, 1);
+
+      // create a material, color or image textute
+      let material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, wireframe: false });
+
+      // create a mesh containing the geometry and material
+      let cube = new THREE.Mesh(geometry, material);
+
+      // add the mesh to the scene
+      scene.add(cube);
+
+      // position the camera
+      camera.position.z = 3;
+
       // game logic
       let update = () => {
-
+        cube.rotation.x += 0.01;
+        cube.rotation.y += 0.005;
       };
 
       // draw scene
