@@ -28,11 +28,11 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
       // create a material, color or image textute for each of the faces of the cube
       let cubeMaterials = [
         new THREE.MeshBasicMaterial({ color: 0xFFFFFF, side: THREE.DoubleSide }), //LEFT side with white color face
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/images/react.png'), side: THREE.DoubleSide }), //RIGHT
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/images/ruby.png'), side: THREE.DoubleSide }), //TOP
+        new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load('./../assets/images/react.png'), side: THREE.DoubleSide }), //RIGHT
+        new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/ruby.png'), side: THREE.DoubleSide }), //TOP
         new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/images/node.png'), side: THREE.DoubleSide }), //BOTTOM
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/images/tailwind.png'), side: THREE.DoubleSide }), //FRONT
-        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/images/html.png'), side: THREE.DoubleSide }) //BACK
+        new THREE.MeshPhongMaterial({ map: new THREE.TextureLoader().load('./../assets/images/tailwind.png'), side: THREE.DoubleSide }), //FRONT
+        new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/html.png'), side: THREE.DoubleSide }) //BACK
       ];
 
       // create a material, color, and set the  material wireframe state
@@ -47,10 +47,19 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
       // position the camera
       camera.position.z = 5;
 
+      // add ambient light to the scene
+      let ambientLight = new THREE.AmbientLight(0xFFFFFF, 5.0);
+      scene.add(ambientLight);
+
+
+
+
+
+
       // iplement permanent rotation
       let update = () => {
-        cube.rotation.x += 0.01;
-        cube.rotation.y += 0.005;
+        // cube.rotation.x += 0.01;
+        // cube.rotation.y += 0.005;
       };
 
       // draw scene
