@@ -35,6 +35,31 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
         new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/html.png'), side: THREE.DoubleSide }) //BACK
       ];
 
+      // Surrounding cube texture with walls
+      let floorGeometry = new THREE.BoxGeometry(10, 0.5, 10);
+      let floorMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/floor.png'), side: THREE.DoubleSide });
+      let floor = new THREE.Mesh(floorGeometry, floorMaterial);
+      floor.position.y = -5;
+      scene.add(floor);
+
+      let ceilingGeometry = new THREE.BoxGeometry(10, 0.5, 10);
+      let ceilingMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/ceiling.png'), side: THREE.DoubleSide });
+      let ceiling = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
+      ceiling.position.y = 5;
+      scene.add(ceiling);
+
+      let leftGeometry = new THREE.BoxGeometry(0.5, 10, 10);
+      let leftMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/left-right.png'), side: THREE.DoubleSide });
+      let left = new THREE.Mesh(leftGeometry, leftMaterial);
+      left.position.x = -5;
+      scene.add(left);
+
+      let rightGeometry = new THREE.BoxGeometry(0.5, 10, 10);
+      let rightMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/left-right.png'), side: THREE.DoubleSide });
+      let right = new THREE.Mesh(rightGeometry, rightMaterial);
+      right.position.x = 5;
+      scene.add(right);
+
       // create a material, color, and set the  material wireframe state
       // let material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, wireframe: true });
 
@@ -48,18 +73,41 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
       camera.position.z = 5;
 
       // add ambient light to the scene
-      let ambientLight = new THREE.AmbientLight(0xFFFFFF, 5.0);
+      let ambientLight = new THREE.AmbientLight(0xFFFFFF, 1.5);
       scene.add(ambientLight);
 
+      // add point light source
+      let light1 = new THREE.PointLight(0xFFFFFF, 4, 50);
+      scene.add(light1);
 
+      let light2 = new THREE.PointLight(0xFF0000, 2, 50);
+      scene.add(light2);
 
-
-
+      let light3 = new THREE.PointLight(0x0000FF, 4, 50);
+      scene.add(light3);
+      
 
       // iplement permanent rotation
       let update = () => {
         // cube.rotation.x += 0.01;
         // cube.rotation.y += 0.005;
+
+        // update light1 position
+        let time = Date.now() * 0.0005;
+
+        light1.position.x = Math.sin(time * 0.7) * 30;
+        light1.position.y = Math.cos(time * 0.5) * 40;
+        light1.position.z = Math.cos(time * 0.3) * 30;
+
+        // update light2 position
+        light2.position.x = Math.cos(time * 0.3) * 30;
+        light2.position.y = Math.sin(time * 0.5) * 40;
+        light2.position.z = Math.sin(time * 0.7) * 30;
+
+        // update light3 position
+        light3.position.x = Math.sin(time * 0.7) * 30;
+        light3.position.y = Math.cos(time * 0.3) * 40;
+        light3.position.z = Math.sin(time * 0.5) * 30;
       };
 
       // draw scene
