@@ -1,5 +1,6 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls' 
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
 
 
@@ -20,6 +21,12 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
       });
 
       const controls = new OrbitControls(camera, renderer.domElement);
+
+      const loader = new GLTFLoader();
+      loader.load('./../assets/models/gear/Gear1.gltf', (gltf) => {
+        const mesh = gltf.scene;
+        scene.add(mesh);
+      });
 
 
       // create the shape
