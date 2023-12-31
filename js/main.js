@@ -86,6 +86,16 @@ import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 
       let light3 = new THREE.PointLight(0x80FF80, 4, 50);
       scene.add(light3);
+
+      // add directional light source
+      let directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
+      directionalLight.position.set(0, 1, 0);
+      scene.add(directionalLight);
+
+      // add spot light source
+      let spotLight = new THREE.SpotLight(0xFF45F6, 25);
+      spotLight.position.set(0, 3, 0);
+      scene.add(spotLight);
       
 
       // implement permanent rotation
