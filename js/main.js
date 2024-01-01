@@ -32,7 +32,7 @@ import { AnaglyphEffect } from 'three/examples/jsm/effects/AnaglyphEffect'
       const loader = new GLTFLoader();
       loader.load('./../assets/models/gear/Gear1.gltf', (gltf) => {
         const mesh = gltf.scene;
-        scene.add(mesh);
+        // scene.add(mesh);
       });
 
 
@@ -54,25 +54,25 @@ import { AnaglyphEffect } from 'three/examples/jsm/effects/AnaglyphEffect'
       let floorMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/floor.png'), side: THREE.DoubleSide });
       let floor = new THREE.Mesh(floorGeometry, floorMaterial);
       floor.position.y = -5;
-      scene.add(floor);
+      // scene.add(floor);
 
       let ceilingGeometry = new THREE.BoxGeometry(10, 0.5, 10);
       let ceilingMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/ceiling.png'), side: THREE.DoubleSide });
       let ceiling = new THREE.Mesh(ceilingGeometry, ceilingMaterial);
       ceiling.position.y = 5;
-      scene.add(ceiling);
+      // scene.add(ceiling);
 
       let leftGeometry = new THREE.BoxGeometry(0.5, 10, 10);
       let leftMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/left-right.png'), side: THREE.DoubleSide });
       let left = new THREE.Mesh(leftGeometry, leftMaterial);
       left.position.x = -5;
-      scene.add(left);
+      // scene.add(left);
 
       let rightGeometry = new THREE.BoxGeometry(0.5, 10, 10);
       let rightMaterial = new THREE.MeshLambertMaterial({ map: new THREE.TextureLoader().load('./../assets/images/left-right.png'), side: THREE.DoubleSide });
       let right = new THREE.Mesh(rightGeometry, rightMaterial);
       right.position.x = 5;
-      scene.add(right);
+      // scene.add(right);
 
       // create a material, color, and set the  material wireframe state
       // let material = new THREE.MeshBasicMaterial({ color: 0xFFFFFF, wireframe: true });
@@ -81,10 +81,23 @@ import { AnaglyphEffect } from 'three/examples/jsm/effects/AnaglyphEffect'
       let cube = new THREE.Mesh(geometry, cubeMaterials);
 
       // add the mesh to the scene
-      scene.add(cube);
+      // scene.add(cube);
 
       // position the camera
       camera.position.z = 3;
+
+
+      let skybox = new THREE.BoxGeometry(750, 750, 750);
+      let skyboxMaterials = [
+        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/skyboxes/UnionSquare/posz.jpg'), side: THREE.DoubleSide }),
+        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/skyboxes/UnionSquare/negz.jpg'), side: THREE.DoubleSide }),
+        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/skyboxes/UnionSquare/posy.jpg'), side: THREE.DoubleSide }),
+        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/skyboxes/UnionSquare/negy.jpg'), side: THREE.DoubleSide }),
+        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/skyboxes/UnionSquare/negx.jpg'), side: THREE.DoubleSide }),
+        new THREE.MeshBasicMaterial({ map: new THREE.TextureLoader().load('./../assets/skyboxes/UnionSquare/posx.jpg'), side: THREE.DoubleSide })
+      ];
+      let skyboxMesh = new THREE.Mesh(skybox, skyboxMaterials);
+      scene.add(skyboxMesh);
 
       // add ambient light to the scene
       let ambientLight = new THREE.AmbientLight(0xFFFFFF, 0.8);
@@ -92,24 +105,24 @@ import { AnaglyphEffect } from 'three/examples/jsm/effects/AnaglyphEffect'
 
       // add point light source
       let light1 = new THREE.PointLight(0xFF0040, 4, 50);
-      scene.add(light1);
+      // scene.add(light1);
 
 
       let light2 = new THREE.PointLight(0x0040FF, 2, 50);
-      scene.add(light2);
+      // scene.add(light2);
 
       let light3 = new THREE.PointLight(0x80FF80, 4, 50);
-      scene.add(light3);
+      // scene.add(light3);
 
       // add directional light source
       let directionalLight = new THREE.DirectionalLight(0xFFFFFF, 1);
       directionalLight.position.set(0, 1, 0);
-      scene.add(directionalLight);
+      // scene.add(directionalLight);
 
       // add spot light source
       let spotLight = new THREE.SpotLight(0xFF45F6, 25);
       spotLight.position.set(0, 3, 0);
-      scene.add(spotLight);
+      // scene.add(spotLight);
       
 
       // implement permanent rotation
