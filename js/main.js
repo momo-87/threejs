@@ -1,7 +1,7 @@
 import * as THREE from "three";
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls' 
 import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
-
+import { AnaglyphEffect } from 'three/examples/jsm/effects/AnaglyphEffect'
 
 (function(){var script=document.createElement('script');script.onload=function(){var stats=new Stats();document.body.appendChild(stats.dom);requestAnimationFrame(function loop(){stats.update();requestAnimationFrame(loop)});};script.src='https://mrdoob.github.io/stats.js/build/stats.min.js';document.head.appendChild(script);})()
 
@@ -20,6 +20,12 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
         camera.aspect = windowHeight / windowWidth;
         camera.updateProjectionMatrix();
       });
+
+
+      let effect = new AnaglyphEffect(renderer);
+      effect.setSize(window.innerWidth, window.innerHeight);
+
+
 
       const controls = new OrbitControls(camera, renderer.domElement);
 
@@ -131,7 +137,7 @@ import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
       // draw scene
       let render = () => {
-        renderer.render(scene, camera);
+        effect.render(scene, camera);
       };
 
       // run game loop (update, render, repeat)
